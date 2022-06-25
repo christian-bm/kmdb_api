@@ -1,5 +1,3 @@
-from os import name
-
 from genres.models import Genre
 from genres.serializers import GenreSerializer
 from rest_framework import serializers

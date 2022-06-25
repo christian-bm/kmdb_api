@@ -19,6 +19,7 @@ class UserSerializer(serializers.Serializer):
         return value
 
     def create(self, validated_data):
+        validated_data["email"] = validated_data["email"].lower()
         return User.objects.create_user(**validated_data)
 
 

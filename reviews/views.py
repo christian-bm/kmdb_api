@@ -21,11 +21,12 @@ class ReviewView(APIView, PageNumberPagination):
 
 class ReviewAdminView(APIView):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAdminOrReadOnly, IsOwnerReview]
+    permission_classes = [IsOwnerReview]
 
     def delete(self, request, review_id):
         try:
             review = Review.objects.get(pk=review_id)
+            self.check_object_permissions(request, review.critic)
             review.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Review.DoesNotExist:

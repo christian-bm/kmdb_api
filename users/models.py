@@ -8,7 +8,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    update_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
 
     username = None
 

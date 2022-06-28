@@ -5,13 +5,13 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView, Response, status
 
 from .models import User
-from .permissions import IsAdminOrReadOnly
+from .permissions import IsAdmin
 from .serializers import UserLoginSerializer, UserSerializer
 
 
 class UserView(APIView, PageNumberPagination):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAdmin]
 
     def get(self, request):
         users = User.objects.all()
@@ -22,7 +22,7 @@ class UserView(APIView, PageNumberPagination):
 
 class UserDetailView(APIView, PageNumberPagination):
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAdmin]
 
     def get(self, request, user_id):
         user = User.objects.get(pk=user_id)

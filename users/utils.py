@@ -16,7 +16,7 @@ class CustomUserManager(BaseUserManager):
             is_staff=is_staff,
             is_active=True,
             is_superuser=is_superuser,
-            update_at=now,
+            updated_at=now,
             last_login=now,
             date_joined=now,
             **extra_fields

@@ -33,8 +33,19 @@ class MovieSerializer(serializers.Serializer):
         return movie
 
     def update(self, instance: Movie, validated_data: dict):
+        genres = validated_data.pop("genres")
+        genres_in_db = []
+        for genre in genres:
+            try:
+                db_genre = Genre.objects.get(name=genre["name"])
+                genres_in_db.append(db_genre)
+            except Genre.DoesNotExist:
+                db_genre = Genre.objects.create(**genre)
+                genres_in_db.append(db_genre)
+
         for key, value in validated_data.items():
             setattr(instance, key, value)
 
+        instance.genres.set(genres_in_db)
         instance.save()
         return instance

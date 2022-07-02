@@ -10,7 +10,7 @@ class UserSerializer(serializers.Serializer):
     last_name = serializers.CharField(max_length=50)
     password = serializers.CharField(write_only=True)
     date_joined = serializers.DateTimeField(read_only=True)
-    update_at = serializers.DateTimeField(read_only=True)
+    updated_at = serializers.DateTimeField(read_only=True)
 
     def validate_email(self, value):
         if User.objects.filter(email__iexact=value).exists():

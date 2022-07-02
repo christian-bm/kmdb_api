@@ -1,4 +1,3 @@
-from django.forms import IntegerField
 from rest_framework import serializers
 from users.serializers import UserReviewSerializer
 
